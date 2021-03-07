@@ -1,4 +1,4 @@
-package kz.eduplatform.courseadapter.model;
+package kz.edu.platform.course.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +19,13 @@ public class Course {
     private long id;
 
     private String name;
+
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private PublishStatus publishStatus;
+
+//    private Integer teacher; // почему тип не Teacher // Удираю поле, причина в классе Group
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Lecture> lectures;
