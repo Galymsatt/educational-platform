@@ -1,4 +1,4 @@
-package kz.eduplatform.courseadapter;
+package kz.edu.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
