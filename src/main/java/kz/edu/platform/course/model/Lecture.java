@@ -1,5 +1,6 @@
 package kz.edu.platform.course.model;
 
+import kz.edu.platform.common.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name="t_lectures")
-public class Lecture {
+public class Lecture extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+//    @Id // убрал из за того что сейчас будут наследоваться с BaseEntity
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
 
 //    Если указать и отсюда связь то нужно указать кто главный класс
 ////    @ManyToOne

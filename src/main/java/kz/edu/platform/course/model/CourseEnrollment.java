@@ -24,9 +24,11 @@ public class CourseEnrollment {
 
     // Если укажем связь я думаю возникнут траблы с созданим таблицы
 //    private Course course;
-    private long courseId;
+    @OneToOne
+    private Course course;
 
-    private long studentId;
+    @OneToOne
+    private Student student;
 
     private Date subscriptionToDate; // Подписка до
 

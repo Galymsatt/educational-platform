@@ -34,11 +34,28 @@ public class CourseController {
     }
 
     @ApiOperation("Update course")
-    @PostMapping(value = "/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") Long id,
-                                    @RequestBody Course course){
-        return ResponseEntity.ok(courseService.update(id, course));
+                                    @RequestBody Course courseDto){
+        return ResponseEntity.ok(courseService.update(id, courseDto));
     }
+
+    @ApiOperation("Add lecture to course")
+    @PostMapping(value = "/addLecture/{courseId}/{lectureId}")
+    public ResponseEntity<?> addLectureToCourse(@PathVariable (name = "courseId") Long courseId,
+                                                @PathVariable (name = "lectureId") Long lectureId,
+                                                @RequestParam (required = false, defaultValue = "0") Integer order){
+        return ResponseEntity.ok(courseService.addLectureToCourse(courseId, lectureId, order));
+    }
+
+    @ApiOperation("Exclude lecture from course")
+    @PostMapping(value = "/excludeLecture/{courseId/{lectureId}")
+    public ResponseEntity<?> excludeLectureFromCourse(@PathVariable Long courseId,
+                                                @PathVariable Long lectureId){
+        return ResponseEntity.ok(courseService.excludeLectureFromCourse(courseId, lectureId));
+    }
+
+    //getAllLectures // need to implement so lectures displayed in right order(thinking to define lecture field as Map<order, Lecture>) // эндпойнт не нужен, нужно только реализовать порядок лекций
 
 
 }
