@@ -32,6 +32,6 @@ public class Course extends BaseEntity {
 //    @OneToMany(cascade = CascadeType.ALL)
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "courseId")
-    private Map<Integer, Lecture> lectures;
+    private List<Lecture> lectures;
 
 }

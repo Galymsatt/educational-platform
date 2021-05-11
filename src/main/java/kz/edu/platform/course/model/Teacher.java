@@ -20,4 +20,8 @@ public class Teacher {
 
     private String username;
 
+    /**
+     * Обдумать как тичер будет видеть своих групп
+     * нужно ли добавлять поле?
+     */
 }

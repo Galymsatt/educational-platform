@@ -1,16 +1,45 @@
 package kz.edu.platform.common.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class User {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id; // Почему поля протектед, потому что пользователи(админ, учитель, студент) будут наследоваться от этого класса
+@Entity
+@Data
+@Builder
+@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+public class User extends BaseEntity implements Serializable {
 
-    protected String username;
+    @Column(name = "username")
+    private String username;
 
-    protected String password;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "hashCode")
+    private String hashCode;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private List<Role> roles;
+
+
 }

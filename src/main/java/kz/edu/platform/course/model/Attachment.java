@@ -19,6 +19,8 @@ public class Attachment {
     @Column(name = "id")
     private long id;
 
+    private String authorId; // uplodaerId, что бы знать какой ученик прикреплял что. "boolean isStudent" убираю, так как можонго будет узнать студент ли это или нет смотря на роля
+
     private String name;
 
     private String key;
@@ -26,5 +28,7 @@ public class Attachment {
     private Long size;
 
     private Date uploadDate;
+
+    // Написать функционал добавления приложений
 
 }
