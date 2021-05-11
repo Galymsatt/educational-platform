@@ -16,9 +16,9 @@ import java.util.Map;
 @Table(name="t_courses")
 public class Course extends BaseEntity {
 
-//    @Id // убрал из за того что сейчас будут наследоваться с BaseEntity
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String name;
 
@@ -27,9 +27,6 @@ public class Course extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PublishStatus publishStatus;
 
-//    private Integer teacher; // почему тип не Teacher // Удираю поле, причина в классе Group
-
-//    @OneToMany(cascade = CascadeType.ALL)
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "courseId")
     private Map<Integer, Lecture> lectures;

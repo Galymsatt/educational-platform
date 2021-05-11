@@ -12,7 +12,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Data
 @Table(name="t_attachments")
-public class Attachment {
+public class  Attachment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

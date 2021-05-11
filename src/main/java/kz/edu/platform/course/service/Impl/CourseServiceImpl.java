@@ -20,6 +20,23 @@ public class CourseServiceImpl implements CourseService {
     private LectureService lectureService;
 
     @Override
+    public Course addLectureToCourse(long courseId, long lectureId, Integer order) {
+
+        Course course = findById(courseId);
+        Lecture lecture = lectureService.findById(lectureId);
+
+        if (course.getLectures() == null){
+            course.setLectures(new HashMap<>());
+        }
+
+        course.getLectures().put(order, lecture);
+
+        course.setUpdatedAt(new Date());
+
+        return courseRepository.save(course);
+    }
+
+    @Override
     public Course createCourse(Course course) {
         return courseRepository.save(course);
     }
@@ -66,22 +83,6 @@ public class CourseServiceImpl implements CourseService {
         return course;
     }
 
-    @Override
-    public Course addLectureToCourse(long courseId, long lectureId, Integer order) {
-
-        Course course = findById(courseId);
-        Lecture lecture = lectureService.findById(lectureId);
-
-        if (course.getLectures() == null){
-            course.setLectures(new HashMap<>());
-        }
-
-        course.getLectures().put(order, lecture);
-
-        course.setUpdatedAt(new Date());
-
-        return courseRepository.save(course);
-    }
 
     @Override
     public Course excludeLectureFromCourse(long courseId, long lectureId) {
