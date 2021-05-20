@@ -20,7 +20,8 @@ import java.util.List;
 public class Lesson extends BaseEntity {
 
     @OneToOne
-    private Lecture lecture; // Еще подумать
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture; // Еще подумать // Можно было оставить lectureId
 
     @ManyToMany
     private List<Attachment> attachments; // List комбинациясын карау

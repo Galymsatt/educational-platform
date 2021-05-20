@@ -21,11 +21,11 @@ import java.util.List;
 Думаю нет смысла связывать к курсу учителя, так как учителей по данному курсу могут быть не один
  */
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name="t_groups")
+//@Table(name="t_groups") // Заменена на CourseEnrollment
 public class Group extends BaseEntity {
 
     private String name;

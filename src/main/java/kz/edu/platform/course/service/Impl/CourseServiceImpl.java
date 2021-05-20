@@ -72,11 +72,11 @@ public class CourseServiceImpl implements CourseService {
         Course course = findById(courseId);
         Lecture lecture = lectureService.findById(lectureId);
 
-        if (course.getLectures() == null){
-            course.setLectures(new HashMap<>());
-        }
-
-        course.getLectures().put(order, lecture);
+//        if (course.getLectures() == null){
+//            course.setLectures(new HashMap<>());
+//        }
+//
+//        course.getLectures().put(order, lecture);
 
         course.setUpdatedAt(new Date());
 
@@ -88,10 +88,10 @@ public class CourseServiceImpl implements CourseService {
 
         Course course = findById(courseId);
         Lecture lecture = lectureService.findById(lectureId);
-
-        if (course.getLectures().containsValue(lecture)){
-            course.getLectures().remove(lecture);
-        }
+//
+//        if (course.getLectures().containsValue(lecture)){
+//            course.getLectures().remove(lecture);
+//        }
 
         course.setUpdatedAt(new Date());
 

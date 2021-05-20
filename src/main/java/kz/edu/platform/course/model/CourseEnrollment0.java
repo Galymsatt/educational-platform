@@ -14,11 +14,11 @@ import java.util.Map;
  * Здесь будут хранится инфа о тех студентах которые индивидуально проходят курс
  */
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name="t_course_enrollment0")
+//@Table(name="t_course_enrollment0")
 public class CourseEnrollment0 extends BaseEntity { // может объедянить с классом Group, поле subscriptionToDate может и у группы быть. Объеденяю, удалить
 
     private String description;

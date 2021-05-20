@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 //Еще под вопросом нужно ли, так как мб думаем что будет только юзеры и их роля
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name="t_students")
+//@Table(name="t_students") // Будет храниться под общей сущностью User
 public class Student {
 
     @Id

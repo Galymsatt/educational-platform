@@ -1,6 +1,7 @@
 package kz.edu.platform.course.model;
 
 import kz.edu.platform.common.model.BaseEntity;
+import kz.edu.platform.common.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+
+/**
+ * Сущность подразумевает общее группы и индивидуальног
+ */
 
 @Entity
 @AllArgsConstructor
@@ -41,18 +46,21 @@ public class CourseEnrollment extends BaseEntity {
      * Если индивидуально проходит курс то скорее не будет тичера
      */
     @ManyToOne
-    private Teacher teacher;
+    private User teacher;
 
     /**
      * Many to many болу керек, может быть так что студент прошел java se и следом переходит к группе java ee
      * Получается если нидивидуальный то в листе будет только один ученик
      */
     @ManyToMany
-    private List<Student> students;
+    private List<User> students;
 
     /**
      * Прикрепляемые файлы
      */
+    @OneToMany
     private List<Lesson> lessons;
+//    @JoinColumn(name = "lesson_id")
+//    private Lesson lessons;
 
 }
