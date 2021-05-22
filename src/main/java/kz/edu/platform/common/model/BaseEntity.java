@@ -23,6 +23,10 @@ public class BaseEntity {
     @Column(name = "deleted_at")
     private Date deletedAt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
     public BaseEntity() {
     }
 }
