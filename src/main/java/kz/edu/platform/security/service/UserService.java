@@ -17,6 +17,7 @@ import org.thymeleaf.context.Context;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
 
 //@Lazy(false)
 //@Component
@@ -44,18 +45,16 @@ public class UserService {
         if (userRepository.findByUsername(userDTO.getUsername()) != null) {
             throw new IllegalArgumentException("Username " + userDTO.getUsername() + " already exists");
         }
-
         User user = UserDTO.toEntity(userDTO);
-        Role role = roleRepositiry.findRoleByName("USER");
-        String hashCode = UUID.randomUUID().toString();
-        List<Role> userRoles = new ArrayList<>();
-        userRoles.add(role);
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println("Encoded password: " + user.getPassword());
-        user.setRoles(userRoles);
+        Set<Role> roleSet = userDTO.getRoles().stream()
+                .map(roleRepositiry::findRoleByName)
+                .collect(Collectors.toSet());
+
+        user.setRoles(roleSet.stream().collect(Collectors.toList()));
 //        user.setStatus(Status.NOT_ACTIVE);
         user.setStatus(Status.ACTIVE);
+        String hashCode = UUID.randomUUID().toString();
         user.setHashCode(hashCode);
 
 //        User registered = null;

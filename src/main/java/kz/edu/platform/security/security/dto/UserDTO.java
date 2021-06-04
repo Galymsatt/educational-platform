@@ -1,7 +1,10 @@
 package kz.edu.platform.security.security.dto;
 
+import kz.edu.platform.common.model.Role;
 import kz.edu.platform.common.model.User;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class UserDTO {
@@ -10,7 +13,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private List<String> roles; // role names
 
     public static User toEntity(UserDTO userDTO) {
         return User.builder()
@@ -18,7 +21,6 @@ public class UserDTO {
                 .email(userDTO.getEmail())
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
-                .password(userDTO.getPassword())
                 .build();
     }
 
