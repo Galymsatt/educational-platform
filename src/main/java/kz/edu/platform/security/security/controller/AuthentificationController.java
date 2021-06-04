@@ -1,21 +1,20 @@
 package kz.edu.platform.security.security.controller;
 
 import kz.edu.platform.common.model.User;
+import kz.edu.platform.security.model.ResetPasswordData;
 import kz.edu.platform.security.security.dto.AuthDTO;
 import kz.edu.platform.security.security.dto.UserDTO;
 import kz.edu.platform.security.security.jwt.JwtTokenProvider;
 import kz.edu.platform.security.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,12 +55,14 @@ public class AuthentificationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity signup(@RequestBody UserDTO userDTO) {
+    public ResponseEntity signUp(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.register(userDTO));
     }
-//
-//    @GetMapping("/password")
-//    public ResponseEntity firstPassword(@PathVariable )
 
+    @PostMapping("/resetPassword")
+    public ResponseEntity resetPassword(@RequestBody ResetPasswordData resetPasswordData) {
+        userService.updatePassword(resetPasswordData);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 }

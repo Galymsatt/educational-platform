@@ -26,7 +26,7 @@ public class CourseController {
     }
 
     @ApiOperation("Get all courses")
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public ResponseEntity<?> getAllCourses(@PageableDefault Pageable pageable,
                                            UserContext userContext){
         return ResponseEntity.ok(courseService.findAll(pageable, userContext));
@@ -61,6 +61,7 @@ public class CourseController {
     }
 
     //getAllLectures // need to implement so lectures displayed in right order(thinking to define lecture field as Map<order, Lecture>) // эндпойнт не нужен, нужно только реализовать порядок лекций
+
 
 
 }

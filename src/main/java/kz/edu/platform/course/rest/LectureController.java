@@ -27,7 +27,7 @@ public class LectureController {
     }
 
     @ApiOperation("Get all lectures")
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public ResponseEntity<?> getAllLectures(@PageableDefault Pageable pageable,
                                             UserContext userContext){
         return ResponseEntity.ok(lectureService.findAll(pageable, userContext));

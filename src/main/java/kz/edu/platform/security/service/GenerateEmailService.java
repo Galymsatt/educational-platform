@@ -12,9 +12,8 @@ public class GenerateEmailService {
 
     private final SpringTemplateEngine thymeleafTemplateEngine;
 
-    public String generate(String hashCode) {
-        Context context = new Context();
-        context.setVariable("url" ,  "domen"+"/api/v1/auth/password/"+hashCode);
+    public String generate(Context context) {
+//        context.setVariable("url" ,  "domen"+"/api/v1/auth/password/"+hashCode);
         return thymeleafTemplateEngine.process("test", context);
     }
 }

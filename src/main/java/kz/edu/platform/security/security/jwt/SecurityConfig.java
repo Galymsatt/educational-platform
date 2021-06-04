@@ -29,7 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources",
             "/swagger-resources/**",
             "/swagger-ui.html",
+            "/webjars/**",
             "/api/registration"
+            //AUTH
+//            "/api/v1/auth/**"
             // other public endpoints of your API may be appended to this array
     };
 
@@ -62,8 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
-//                .anyRequest().authenticated()
-                .anyRequest().permitAll() // на время для Арсу
+                .anyRequest().authenticated()
+//                .anyRequest().permitAll() // на время для Арсу
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
     }
