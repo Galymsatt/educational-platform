@@ -38,7 +38,7 @@ public class User extends BaseEntity implements Serializable {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     @ToString.Exclude
-    @JsonBackReference
+    @JsonBackReference // Забыл что означает, загуглить
     private List<Role> roles;
 
 

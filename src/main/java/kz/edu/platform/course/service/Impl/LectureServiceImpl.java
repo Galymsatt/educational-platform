@@ -1,9 +1,14 @@
 package kz.edu.platform.course.service.Impl;
 
+import kz.edu.platform.common.model.UserContext;
 import kz.edu.platform.course.model.Lecture;
+import kz.edu.platform.course.model.dto.LectureDto;
 import kz.edu.platform.course.repositories.LectureRepository;
 import kz.edu.platform.course.service.LectureService;
+import kz.edu.platform.course.util.mapper.LectureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,13 +23,15 @@ public class LectureServiceImpl implements LectureService {
     private LectureRepository lectureRepository;
 
     @Override
-    public List<Lecture> findAll() {
-        return lectureRepository.findAll();
+    public Page<LectureDto> findAll(Pageable pageable, UserContext userContext) {
+        return LectureMapper.from(lectureRepository.findAll(pageable));
     }
 
     @Override
-    public Lecture save(Lecture lectureDto) {
-        return lectureRepository.save(lectureDto);
+    public LectureDto save(LectureDto lectureDto) {
+        Lecture lecture = LectureMapper.from(lectureDto);
+
+        return LectureMapper.from(lectureRepository.save(lecture));
     }
 
     @Override
@@ -40,7 +47,12 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public Lecture update(long id, Lecture lectureDto) {
+    public LectureDto getLectureById(long id) {
+        return LectureMapper.from(findById(id));
+    }
+
+    @Override
+    public LectureDto update(long id, Lecture lectureDto) {
 
         Lecture lecture = findById(id);
 
@@ -59,11 +71,11 @@ public class LectureServiceImpl implements LectureService {
 
         lecture.setUpdatedAt(new Date());
 
-        return lectureRepository.save(lecture);
+        return LectureMapper.from(lectureRepository.save(lecture));
     }
 
     @Override
-    public Lecture addAttachment(long id, MultipartFile attachment) {
+    public LectureDto addAttachment(long id, MultipartFile attachment) {
         // Need to implement
         return null;
     }

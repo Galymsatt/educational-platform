@@ -1,18 +1,22 @@
 package kz.edu.platform.course.service;
 
+import kz.edu.platform.common.model.UserContext;
 import kz.edu.platform.course.model.Course;
 import kz.edu.platform.course.model.Lecture;
+import kz.edu.platform.course.model.dto.CourseDto;
+import kz.edu.platform.course.model.dto.LectureDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface CourseService {
 
-    Course createCourse(Course course);
-    List<Course> findAll();
-    Course findById(long id);
-    Course update(long id, Course course);
-    Course addLectureToCourse(long courseId, long lectureId, Integer order);
-    Course excludeLectureFromCourse(long courseId, long lectureId);
-    Lecture getAllLectures(long courseId);
+    CourseDto createCourse(CourseDto course);
+    Page<CourseDto> findAll(Pageable pageable, UserContext userContext);
+    CourseDto getCourseById(long id);
+    CourseDto update(long id, Course course);
+    CourseDto addLectureToCourse(long courseId, long lectureId, Integer order);
+    CourseDto excludeLectureFromCourse(long courseId, long lectureId);
+    LectureDto getAllLectures(long courseId); // Должно находиться в LectureService?
 
 }

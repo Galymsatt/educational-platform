@@ -23,7 +23,7 @@ public class JwtTokenProvider  {
     private final UserDetailsService userDetailsService;
 
     private String secret = "Arsu";
-    private String validityInMilliseconds = "360000";
+    private long validityInMilliseconds = 1000 * 60 * 60 * 24;
 
     @PostConstruct
     protected void init() {

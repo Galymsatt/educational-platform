@@ -8,7 +8,9 @@ import kz.edu.platform.security.repository.UserRepository;
 import kz.edu.platform.security.security.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -17,12 +19,14 @@ import java.util.Random;
 import java.util.UUID;
 
 //@Lazy(false)
-@Component
+//@Component
+@Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepositiry roleRepositiry;
     private final BCryptPasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final MailSenderService mailSenderService;
     private final GenerateEmailService generateEmailHtml;
 
@@ -45,6 +49,7 @@ public class UserService {
         userRoles.add(role);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("Encoded password: " + user.getPassword());
         user.setRoles(userRoles);
 //        user.setStatus(Status.NOT_ACTIVE);
         user.setStatus(Status.ACTIVE);

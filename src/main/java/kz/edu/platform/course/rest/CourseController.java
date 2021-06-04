@@ -1,9 +1,13 @@
 package kz.edu.platform.course.rest;
 
 import io.swagger.annotations.ApiOperation;
+import kz.edu.platform.common.model.UserContext;
 import kz.edu.platform.course.model.Course;
+import kz.edu.platform.course.model.dto.CourseDto;
 import kz.edu.platform.course.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +21,21 @@ public class CourseController {
 
     @ApiOperation("Save course")
     @PutMapping(value = "/save")
-    public ResponseEntity<Course> createCourse(@RequestBody Course course){
-        return new ResponseEntity<>(courseService.createCourse(course), HttpStatus.CREATED);
+    public ResponseEntity<CourseDto> createCourse(@RequestBody CourseDto courseDto){
+        return new ResponseEntity<>(courseService.createCourse(courseDto), HttpStatus.CREATED);
     }
 
     @ApiOperation("Get all courses")
     @GetMapping(value = "/")
-    public ResponseEntity<?> getAllCourses(){
-        return ResponseEntity.ok(courseService.findAll());
+    public ResponseEntity<?> getAllCourses(@PageableDefault Pageable pageable,
+                                           UserContext userContext){
+        return ResponseEntity.ok(courseService.findAll(pageable, userContext));
     }
 
     @ApiOperation("Get course by id")
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getCourseById(@PathVariable(name = "id") Long id){
-        return ResponseEntity.ok(courseService.findById(id));
+        return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
     @ApiOperation("Update course")
