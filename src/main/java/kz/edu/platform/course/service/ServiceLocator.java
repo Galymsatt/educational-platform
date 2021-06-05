@@ -1,6 +1,6 @@
 package kz.edu.platform.course.service;
 
-import kz.edu.platform.security.service.UserService;
+import kz.edu.platform.security.service.impl.UserServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -16,7 +16,7 @@ public final class ServiceLocator implements ApplicationContextAware {
         context = ac;
     }
 
-    public static UserService userService() {
-        return context.getBean(UserService.class);
+    public static UserServiceImpl userService() {
+        return context.getBean(UserServiceImpl.class);
     }
 }

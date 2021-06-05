@@ -1,9 +1,10 @@
-package kz.edu.platform.security.security.dto;
+package kz.edu.platform.security.model.dto;
 
 import lombok.Data;
 
 @Data
-public class AuthDTO {
+public class AuthDto {
+
     private String username;
     private String password;
 

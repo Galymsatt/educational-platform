@@ -3,9 +3,9 @@ package kz.edu.platform.course.util.mapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
-class Mapper {
+public class Mapper {
 
-    static ModelMapper newMapper() {
+    public static ModelMapper newMapper() {
         final ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return mapper;

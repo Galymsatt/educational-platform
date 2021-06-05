@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import kz.edu.platform.common.model.UserContext;
 import kz.edu.platform.course.model.Course;
 import kz.edu.platform.course.model.dto.CourseDto;
+import kz.edu.platform.course.model.dto.LectureDto;
 import kz.edu.platform.course.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -62,7 +65,5 @@ public class CourseController {
     }
 
     //getAllLectures // need to implement so lectures displayed in right order(thinking to define lecture field as Map<order, Lecture>) // эндпойнт не нужен, нужно только реализовать порядок лекций
-
-
 
 }

@@ -2,17 +2,20 @@ package kz.edu.platform.common.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
-@Builder
-@Table(name = "users")
+//@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class User extends BaseEntity implements Serializable {
 
     @Column(name = "username")
@@ -40,6 +43,5 @@ public class User extends BaseEntity implements Serializable {
     @ToString.Exclude
     @JsonBackReference // Забыл что означает, загуглить
     private List<Role> roles;
-
 
 }

@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Page<CourseDto> findAll(Pageable pageable, UserContext userContext) {
 
-        
+
 
         return CourseMapper.from(courseRepository.findAll(pageable));
     }
@@ -94,7 +94,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseDto addLectureToCourse(long courseId, long lectureId, Integer order) {
+    public CourseDto addLectureToCourse(long courseId, long lectureId, Integer order) { // order не нужно т.к. было обявлено поле LectureDto.num
 
         Course course = findById(courseId);
         Lecture lecture = lectureService.findById(lectureId);

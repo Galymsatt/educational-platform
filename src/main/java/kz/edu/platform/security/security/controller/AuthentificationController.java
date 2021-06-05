@@ -3,10 +3,10 @@ package kz.edu.platform.security.security.controller;
 import kz.edu.platform.common.model.Role;
 import kz.edu.platform.common.model.User;
 import kz.edu.platform.security.model.ResetPasswordData;
-import kz.edu.platform.security.security.dto.AuthDTO;
-import kz.edu.platform.security.security.dto.UserDTO;
+import kz.edu.platform.common.model.dto.UserDto;
+import kz.edu.platform.security.model.dto.AuthDto;
 import kz.edu.platform.security.security.jwt.JwtTokenProvider;
-import kz.edu.platform.security.service.UserService;
+import kz.edu.platform.security.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,14 +31,14 @@ public class AuthentificationController {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody AuthDTO authDTO) {
+    public ResponseEntity login(@RequestBody AuthDto authDTO) {
         try {
             String username = authDTO.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authDTO.getPassword()));
-            User user = userService.findByUsername(username);
+            User user = userServiceImpl.findByUsername(username);
 
             if (user == null) {
                 throw new UsernameNotFoundException("User with username " + username + " not found");
@@ -49,7 +49,7 @@ public class AuthentificationController {
 
             response.put("username", username);
             response.put("token", token);
-            response.put("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList())); // потом убрать
+            response.put("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList())); // потом убрать, роли не нужно скидывать, в токене зашиты
 
             return ResponseEntity.ok(response);
 
@@ -59,13 +59,13 @@ public class AuthentificationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity signUp(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.register(userDTO));
+    public ResponseEntity signUp(@RequestBody UserDto userDTO) {
+        return ResponseEntity.ok(userServiceImpl.save(userDTO));
     }
 
     @PostMapping("/resetPassword")
     public ResponseEntity resetPassword(@RequestBody ResetPasswordData resetPasswordData) {
-        userService.updatePassword(resetPasswordData);
+        userServiceImpl.updatePassword(resetPasswordData);
         return new ResponseEntity(HttpStatus.OK);
     }
 

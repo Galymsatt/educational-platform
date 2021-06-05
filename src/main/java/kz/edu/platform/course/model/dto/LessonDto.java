@@ -2,27 +2,22 @@ package kz.edu.platform.course.model.dto;
 
 import kz.edu.platform.common.model.BaseEntity;
 import kz.edu.platform.course.model.Attachment;
+import kz.edu.platform.course.model.Lecture;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Data
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LectureDto extends BaseEntity {
+public class LessonDto extends BaseEntity {
 
-    private int num;
-
-    private String name;
-
-    private String description;
-
-    private String content;
+    private LectureDto lecture;
 
     private List<Attachment> attachments;
-
-    private String videoLink;
 
 }
