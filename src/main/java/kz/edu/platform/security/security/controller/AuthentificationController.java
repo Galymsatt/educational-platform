@@ -1,5 +1,6 @@
 package kz.edu.platform.security.security.controller;
 
+import kz.edu.platform.common.model.Role;
 import kz.edu.platform.common.model.User;
 import kz.edu.platform.security.model.ResetPasswordData;
 import kz.edu.platform.security.security.dto.AuthDTO;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -47,6 +49,7 @@ public class AuthentificationController {
 
             response.put("username", username);
             response.put("token", token);
+            response.put("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList())); // потом убрать
 
             return ResponseEntity.ok(response);
 
