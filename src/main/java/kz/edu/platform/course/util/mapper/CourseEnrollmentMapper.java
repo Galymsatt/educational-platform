@@ -29,6 +29,7 @@ public class CourseEnrollmentMapper {
                 .course(CourseDto.builder()
                         .id(courseEnrollment.getCourse().getId())
                         .name(courseEnrollment.getCourse().getName())
+                        .description(courseEnrollment.getDescription())
                         .build())
                 .subscriptionToDate(courseEnrollment.getSubscriptionToDate())
                 .teacher(courseEnrollment.getTeacher() != null
