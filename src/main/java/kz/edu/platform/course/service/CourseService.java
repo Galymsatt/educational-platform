@@ -15,6 +15,7 @@ public interface CourseService {
 
     CourseDto createCourse(CourseDto course);
     Page<CourseDto> findAll(Pageable pageable, UserContext userContext);
+    List<CourseDto> findAll(UserContext userContext);
     CourseDto getCourseById(long id);
     CourseDto update(long id, Course course);
     CourseDto addLectureToCourse(long courseId, long lectureId, Integer order);

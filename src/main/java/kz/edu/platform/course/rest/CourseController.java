@@ -30,10 +30,11 @@ public class CourseController {
     }
 
     @ApiOperation("Get all courses")
-    @GetMapping(value = "")
+    @GetMapping(value = "/all")
     public ResponseEntity<?> getAllCourses(@PageableDefault Pageable pageable,
                                            UserContext userContext){
-        return ResponseEntity.ok(courseService.findAll(pageable, userContext));
+//        return ResponseEntity.ok(courseService.findAll(pageable, userContext));
+        return ResponseEntity.ok(courseService.findAll(userContext));
     }
 
     @ApiOperation("Get course by id")

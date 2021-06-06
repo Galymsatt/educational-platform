@@ -2,6 +2,7 @@ package kz.edu.platform.common.model.dto;
 
 import kz.edu.platform.common.model.BaseEntity;
 import kz.edu.platform.common.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Data
 @SuperBuilder
+@AllArgsConstructor
 public class UserDto extends BaseEntity {
 
     private String username;

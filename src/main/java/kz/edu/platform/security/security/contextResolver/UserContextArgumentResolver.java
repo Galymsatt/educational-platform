@@ -13,6 +13,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.security.Principal;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class UserContextArgumentResolver implements HandlerMethodArgumentResolver {
@@ -59,6 +60,9 @@ public class UserContextArgumentResolver implements HandlerMethodArgumentResolve
 
                 return UserContext.builder()
                         .username(user.getUsername())
+                        .roles(user.getRoles().stream()
+                                .map(role -> role.getName())
+                                .collect(Collectors.toList()))
                         .build();
             }
         } catch (Exception e) {

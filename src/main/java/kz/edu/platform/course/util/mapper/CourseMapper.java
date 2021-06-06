@@ -5,6 +5,9 @@ import kz.edu.platform.course.model.dto.CourseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class CourseMapper {
 
@@ -18,6 +21,10 @@ public class CourseMapper {
 
     public static Page<CourseDto> from(Page<Course> page) {
         return page.map(CourseMapper::from);
+    }
+
+    public static List<CourseDto> from(List<Course> page) {
+        return page.stream().map(CourseMapper::from).collect(Collectors.toList());
     }
 
     public static Course from(CourseDto courseDto) {

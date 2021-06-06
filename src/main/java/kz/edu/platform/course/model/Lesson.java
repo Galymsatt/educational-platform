@@ -4,6 +4,7 @@ import kz.edu.platform.common.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,9 +14,10 @@ import java.util.List;
  */
 
 @Entity
+@Data
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Table(name = "t_lessons")
 public class Lesson extends BaseEntity {
 

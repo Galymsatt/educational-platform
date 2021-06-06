@@ -52,8 +52,13 @@ public class CourseServiceImpl implements CourseService {
         return CourseMapper.from(courseRepository.findAll(pageable));
     }
 
+    @Override
+    public List<CourseDto> findAll(UserContext userContext) {
 
-    private Course findById(long id) {
+        return CourseMapper.from(courseRepository.findAll());
+    }
+
+    public Course findById(long id) {
         Optional<Course> courseOpt = courseRepository.findById(id);
 
         if (!courseOpt.isPresent()){

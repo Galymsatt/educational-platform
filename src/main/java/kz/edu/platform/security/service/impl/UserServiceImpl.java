@@ -37,9 +37,12 @@ public class UserServiceImpl implements UserService {
     @Value("${client.base.url}")
     private String clientBaseUrl;
 
-    private final String ADMIN_ROLE = "ADMIN";
-    private final String TEACHER_ROLE = "TEACHER";
-    private final String STUDENT_ROLE = "STUDENT";
+    @Value("${role-name.admin}")
+    private String ADMIN_ROLE;
+    @Value("${role-name.teacher}")
+    private String TEACHER_ROLE;
+    @Value("${role-name.student}")
+    private String STUDENT_ROLE;
 
     public String generateString() {
         byte[] array = new byte[7]; // length is bounded by 7

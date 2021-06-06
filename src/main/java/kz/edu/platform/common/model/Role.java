@@ -16,6 +16,6 @@ public class Role extends BaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    @JsonManagedReference // Забыл что означает, загуглить
+//    @JsonManagedReference // Забыл что означает, загуглить // Ошибка были из за этого
     private List<User> users;
 }

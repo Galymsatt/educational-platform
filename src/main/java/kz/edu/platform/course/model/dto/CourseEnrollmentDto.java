@@ -1,6 +1,8 @@
 package kz.edu.platform.course.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kz.edu.platform.common.model.BaseEntity;
 import kz.edu.platform.common.model.User;
 import kz.edu.platform.course.model.EnrollmentType;
